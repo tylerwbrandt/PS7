@@ -25,3 +25,14 @@ daily_rates_neighborhood
 
 ## Neighborhood 35 has the most crimes
 
+# 4. Proportion of crime related to robbery by district
+robbery_district <- crime_data %>%
+  group_by(District) %>%
+  mutate(robbery = ifelse(cleaned_description == "ROBBERY", 1, 0)) %>%
+  summarise(crime_count = n(),
+            robbery_count = sum(robbery),
+            pct = robbery_count/crime_count) %>%
+  arrange(desc(pct))
+robbery_district
+
+## District 5 has the most robberies per crime
