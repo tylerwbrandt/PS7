@@ -42,7 +42,8 @@ daily_crimes <- crime_data %>%
   mutate(date = substr(as.character(crime_data$DateOccur), 0, 10)) %>%
   mutate(date2 = as.Date.character(date, "%m/%d/%Y")) %>%
   group_by(date2) %>%
-  summarise(count = n())
+  summarise(count = n()) %>%
+  filter (date2 > "2017-12-31")
 
 ggplot(data = daily_crimes, aes(date2, count)) +
   geom_line(position = "dodge")
