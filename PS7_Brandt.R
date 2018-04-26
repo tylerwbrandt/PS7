@@ -62,5 +62,6 @@ ggplot(data = daily_crimes2, aes(date2, count)) +
   geom_line(aes(color = as.character(District))) +
   xlab("Date") + ylab("Number of Daily Crimes") +
   ggtitle("Daily Crimes by District Over Time") +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_color_discrete(name = "Districts")
 
