@@ -7,4 +7,8 @@ crime_data <- read.csv("~/Documents/Applied_Statistical_Programming/March2018.cs
 View(crime_data)
 
 # 2. Crimes per day by type of crime
-View(mutate(crime_data, cleaned_description = gsub("-.*$", "", crime_data$Description)))
+crime_data <- mutate(crime_data, cleaned_description = gsub("-.*$", "", crime_data$Description))
+daily_rates_march <- crime_data %>%
+  group_by(cleaned_description) %>%
+  summarise(count = n()/31)
+daily_rates_march
