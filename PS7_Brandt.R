@@ -10,5 +10,10 @@ View(crime_data)
 crime_data <- mutate(crime_data, cleaned_description = gsub("-.*$", "", crime_data$Description))
 daily_rates_march <- crime_data %>%
   group_by(cleaned_description) %>%
-  summarise(count = n()/31)
+  summarise(count = n()/31) %>%
+  arrange(desc(count))
 daily_rates_march
+
+## Larceny has the most occurrences
+
+# 3. 
