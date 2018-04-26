@@ -46,6 +46,7 @@ daily_crimes <- crime_data %>%
   filter (date2 > "2017-12-31")
 
 ggplot(data = daily_crimes, aes(date2, count)) +
-  geom_line(position = "dodge")
+  geom_line(position = "dodge") + xlab("Date") + ylab("number of daily crimes") +
+  ggtitle ("Daily crimes over time")
 
 
