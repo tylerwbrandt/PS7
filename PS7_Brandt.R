@@ -47,7 +47,20 @@ daily_crimes <- crime_data %>%
 
 ggplot(data = daily_crimes, aes(date2, count)) +
   geom_line(position = "dodge") + xlab("Date") + ylab("Number of Daily Crimes") +
-  ggtitle ("Daily crimes over time") +
+  ggtitle ("Daily Crimes Over Time") +
   theme(plot.title = element_text(hjust = 0.5))
 
+#6. Changes of all types of crime by district over time
+daily_crimes2 <- crime_data %>%
+  mutate(date = substr(as.character(crime_data$DateOccur), 0, 10)) %>%
+  mutate(date2 = as.Date.character(date, "%m/%d/%Y")) %>%
+  group_by(date2, District) %>%
+  summarise(count = n()) %>%
+  filter (date2 > "2017-12-31")
+
+ggplot(date = daily_crimes2, aes(date2, count, colour = District)) +
+  geom_line(position = "dodge") +
+  xlab("Date") + ylab("Number of Daily Crimes") +
+  ggtitle("Daily Crimes by District Over Time") +
+  theme(plot.title = element_text(hjust = 0.5))
 
