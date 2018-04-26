@@ -36,3 +36,15 @@ robbery_district <- crime_data %>%
 robbery_district
 
 ## District 5 has the most robberies per crime
+
+# 5. Changes of all types of crime over time
+daily_crimes <- crime_data %>%
+  mutate(date = substr(as.character(crime_data$DateOccur), 0, 10)) %>%
+  mutate(date2 = as.Date.character(date, "%m/%d/%Y")) %>%
+  group_by(date2) %>%
+  summarise(count = n())
+
+ggplot(data = daily_crimes, aes(date2, count)) +
+  geom_line(position = "dodge")
+
+
